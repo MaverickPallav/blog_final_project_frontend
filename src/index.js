@@ -18,7 +18,7 @@ root.render(
    <Route path="/" element={<Login/>}></Route>
    <Route path="/blogs" element={<App />}></Route>
    <Route path="/register" element={<Register />}></Route>
-   <Route path="/blogs/add" element={<Add />}></Route>
+   <Route path="/blogs/add/:authorid" element={<Add />}></Route>
    </Routes>
    </BrowserRouter>
 );

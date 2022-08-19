@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './design.css';
-import { Link } from "react-router-dom";
+import { Link, Navigate , useNavigate, useParams } from 'react-router-dom';
+import axios from "axios";
 function Add(){
+
+    const {authorid} = useParams();
+    const API_url = `http://127.0.0.1:3000/createblog`;
+    console.log(" Backend APi---------",API_url)
+    const navigate = useNavigate();
+    
     const [title,changetitle]=useState('')
     const [summarydata,changesummarydata]=useState('')
     const [images, setImages]=useState([]);
@@ -13,13 +20,13 @@ function Add(){
     const summarychange=(event)=>{
         changesummarydata(event.target.value)
     }
-    const addsubmit=(event)=>{
-        changetitle('')
-        changesummarydata('')
-        setImages('')
-        setImageURLs('')
-        window.alert('Blog added successfully')
-    }
+    // const addsubmit=(event)=>{
+    //     changetitle('')
+    //     changesummarydata('')
+    //     setImages('')
+    //     setImageURLs('')
+    //     window.alert('Blog added successfully')
+    // }
     useEffect(()=>
     {
         if (images.length<1) return;
@@ -30,11 +37,32 @@ function Add(){
     function onImageChange(e){
         setImages([...e.target.files]);
     }
+
+    const formHandler = async (event) =>{
+        event.preventDefault();
+        console.log("form submitted")
+
+        let data ={ 
+            "authors_id" : authorid,
+            "Title": title,
+            "Summary": summarydata
+        }
+        changetitle(""); changesummarydata("");
+
+        let response = await axios.post(API_url,data)
+        if(response.status === 200){
+            //window.alert('Your blog is added successfully')
+            navigate("/blogs",{replace:true})
+        }else{
+            
+        }
+        console.log("Responses---------",response.status)
+    }
     return(<div className="container-fluid">
             <div className="row bg">
                 <div className="col-10">
                     <h1 className="text-center">Add Blog</h1>
-                <form>
+                <form onSubmit={formHandler}>
                     <div className="container-fluid">
                     <div className="row">
                         <span>Title of the Blog</span>
@@ -48,7 +76,8 @@ function Add(){
                         <textarea value={summarydata} onChange={summarychange}rows="20"placeholder="please enter the content of code here"></textarea>
                         </div>
                         <div className="row">    
-                        <Link to={{pathname:'/blogs'}}><button onClick={addsubmit}>Submit</button></Link></div>
+                        <button type="submit" className="submitbutton" >Submit</button>
+                        </div>
                         <div class="row">
                         <span>Upload Image: </span>
                         <div>
@@ -58,6 +87,7 @@ function Add(){
                         </div>
                         </div>
                   </form>
+
                 </div>
             </div>
         </div>)
