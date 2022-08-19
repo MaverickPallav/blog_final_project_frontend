@@ -6,7 +6,7 @@ import axios from "axios";
 
 function Register(){
 
-    const API_url = "http://127.0.0.1:3000/profile";
+    const API_url = "http://127.0.0.1:3000/newuser";
     const navigate = useNavigate();
 
     const [firstname,changefirstname]=useState("")
