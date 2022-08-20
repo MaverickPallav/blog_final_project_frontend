@@ -47,7 +47,8 @@ function Register(){
         if(response.status === 200){
             navigate("/blogs",{replace:true})
         }else{
-
+            window.alert('User already Exist')
+            navigate("/",{replace:true})
         }
         console.log("Responses---------",response.status)
     }

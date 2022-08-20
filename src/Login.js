@@ -1,5 +1,3 @@
-
-
 import React , {useState } from 'react';
 import './Login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,19 +20,19 @@ function Login() {
       console.log("form submitted")
 
       let data ={
-          // Name: firstname,
-          // Email: email,
-          // Password: password,
-          // Bio: bio
+          Email: mail,
+          Password: password
       }
       setMail(""); setPassword(""); 
       let response = await axios.post(API_url,data)
+      console.log("Responses---------",response.status)
       if(response.status === 200){
           navigate("/blogs",{replace:true})
+          window.alert('logged in successfully')
       }else{
-
+          navigate("",{replace:true})
+          window.alert('wrong credentials')
       }
-      console.log("Responses---------",response.status)
   }
 
   return (
@@ -45,21 +43,20 @@ function Login() {
         <h1 className='logintag'> Login </h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label className='emaillabel'>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" value={mail} onChange={event => {
+        <Form.Control placeholder="Enter email" value={mail} onChange={event => {
            setMail(event.target.value);
-           console.log(mail);
         }} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label className='passwordlabel'>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" value={password} onChange={event => {
+        <Form.Control placeholder="Password" value={password} onChange={event => {
             setPassword(password);
         }}/>
-      </Form.Group><Link to={{pathname:'/blogs'}}>
-      <Button variant="primary" type="submit">
+      </Form.Group>
+      <Button variant="primary" type="submit" className="submitbutton">
        Log in
-      </Button></Link>
+      </Button>
       <div className='newusertag'><Link to={{pathname:'/register'}}> new User?</Link> </div>
     </Form>
    
