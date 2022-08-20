@@ -23,12 +23,17 @@ function Login() {
           Email: mail,
           Password: password
       }
+      console.log(data);
       setMail(""); setPassword(""); 
       let response = await axios.post(API_url,data)
-      console.log("Responses---------",response.status)
+      console.log("Responses---------",response.data)
+
       if(response.status === 200){
           navigate("/blogs",{replace:true})
           window.alert('logged in successfully')
+          window.localStorage.setItem('user_id',response.data.id)
+          window.localStorage.setItem('user_name',response.data.Name)
+
       }else{
           navigate("",{replace:true})
           window.alert('wrong credentials')
@@ -51,7 +56,7 @@ function Login() {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label className='passwordlabel'>Password</Form.Label>
         <Form.Control placeholder="Password" value={password} onChange={event => {
-            setPassword(password);
+            setPassword(event.target.value);
         }}/>
       </Form.Group>
       <Button variant="primary" type="submit" className="submitbutton">
