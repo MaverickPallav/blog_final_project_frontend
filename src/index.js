@@ -9,16 +9,33 @@ import Home from './home';
 import Login from './Login';
 import Add from './add';
 import UploadImages from './uploadimage';
+import Edit from './edit';
+import Myblogs from './My_blog';
+import More from './moredetails';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <BrowserRouter>
+//    <Routes>
+//    <Route path="/" element={<Login/>}></Route>
+//    <Route path="/blogs" element={<App />}></Route>
+//    <Route path="/register" element={<Register />}></Route>
+//    <Route path="/blogs/add/:authorid" element={<Add />}></Route>
+//    </Routes>
+//    </BrowserRouter>
+// );
+
 root.render(
   <BrowserRouter>
    <Routes>
    <Route path="/" element={<Login/>}></Route>
-   <Route path="/blogs" element={<App />}></Route>
+   <Route path="/blogs" element={<Home />}></Route>
    <Route path="/register" element={<Register />}></Route>
-   <Route path="/blogs/add/:authorid" element={<Add />}></Route>
+   <Route path="/blogs/add" element={<Add />}></Route>
+   <Route path="/blogs/myblogs" element={<Myblogs/>}></Route>
+   <Route path="/blogs/myblogs/edit/:id" element={<Edit />}></Route>
+   <Route path="/blogs/moredetails/:id" element={<More/>}></Route>
    </Routes>
    </BrowserRouter>
 );
