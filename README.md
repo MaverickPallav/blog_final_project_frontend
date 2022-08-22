@@ -1,3 +1,17 @@
+Locally Deployed Blog website with Frontend written in React and Backend written in Ruby on Rails
+
+Blog website covers following
+1. Adding author
+2. Adding blogs 
+3. Creatordashboard for Admin
+4. login Authentication
+
+This Repo is the frontend portion of it
+
+1. Install the packages
+2. Make sure the backend server is running (type "rails server in backend file to run the server)
+3. Go to the frontend , Open terminal and type "npm start"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
