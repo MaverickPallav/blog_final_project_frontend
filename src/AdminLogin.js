@@ -49,7 +49,7 @@ function Login() {
     <div className="container h-100 loginform">
     <div className="row h-100 justify-content-center align-items-center">
     <Form onSubmit={formHandler} className='col-6'>
-        <h1 className='logintag'> Login </h1>
+        <h1 className='logintag'> Admin Login </h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label className='emaillabel'>Email address</Form.Label>
         <Form.Control placeholder="Enter email" value={mail} onChange={event => {
