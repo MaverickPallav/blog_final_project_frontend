@@ -94,7 +94,7 @@ function Myblogs() {
                   <p className="card-text">
                     Bio:{movie.Bio}
                   </p>
-                  {/* <Link to={{pathname:`/editauthor`}}><div className="col-3 btn btn-primary btdesign"><span className="buttonsize">Edit<br></br>Details...</span></div></Link> */}
+                  <Link to={{pathname:`/editauthor/${movie.id}`}}><div className="col-3 btn btn-primary btdesign"><span className="buttonsize">Edit<br></br>Details...</span></div></Link>
                   {/* <Link to={{pathname:`/blogs/moredetails/${movie.id}`}}><div className="col-3 btn btn-primary btdesign" ><span className="buttonsize">More Details...</span></div></Link> */}
                   <div className="col-3 btn btn-primary btdesign" onClick={event => deleteMovies(event,movie.Name,movie.id)}><span className="buttonsize">Delete Details...</span></div>
                 </div>

@@ -5,13 +5,13 @@ import './design.css';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Navbar from './navbar';
 import axios from 'axios';
-function Edit(){
+import NavbarAdmin from "./navbaradmin";
+function EditAuthor(){
      const navigate = useNavigate();
      let params=useParams()
     //  const API_url_thisblog = `http://127.0.0.1:3000/showthisblog`;
-    const API_url = "http://127.0.0.1:3000/showuserblog";
+    //const API_url = "http://127.0.0.1:3000/allauthor";
     let userid = window.localStorage.getItem('user_id')
-     const API_url_editblog = `http://127.0.0.1:3000/editauthor`;
     let [movies, setMovies] = useState([]);
     let editmovie={};
     useEffect(() => {
@@ -29,13 +29,16 @@ function Edit(){
         //     setMovies(response.data);
         // }else{
             
-        // } 
-        let data ={
-            authors_id : userid
+        // }
+        
+        let data  = {
+            id : params.id
         }
-        let response = await axios.post(API_url,data)
-        setMovies(response.data);
+
+        let response = await axios.post("http://127.0.0.1:3000/authorinfo",data)
         console.log(response.data)
+        setMovies([response.data]);
+        
     }
     
     console.log(movies.length)
@@ -43,7 +46,7 @@ function Edit(){
     for(let i=0;i<movies.length;i++){
         if (movies[i].id == params.id){
             editmovie=movies[i]
-            console.log(editmovie)
+            //console.log(editmovie)
         }
     }
 
@@ -77,17 +80,17 @@ function Edit(){
 
         let data ={ 
             "id" : params.id,
-            "Title": title,
-            "Summary": summarydata,
-            "Description": description,
-            "Image": url
+            "Name": title,
+            "Email": description,
+            "Password": summarydata,
+            "Bio": url
         }
         changetitle(""); changesummarydata(""); changedescription(""); seturl("");
 
-        let response = await axios.post(API_url_editblog,data)
+        let response = await axios.post("http://127.0.0.1:3000/editauthor",data)
         if(response.status === 200){
-            window.alert('Your blog is edited successfully')
-            navigate("/blogs",{replace:true})
+            window.alert('Author info is edited successfully')
+            navigate("/Creatordashboard",{replace:true})
         }else{
             
         }
@@ -95,39 +98,40 @@ function Edit(){
     }
     return(<div className="container-fluid">
             <div className="row bg">
-                <Navbar />
+                <NavbarAdmin />
                 <div className="col-10">
-                    <h1 className="text-center">Edit Blog</h1>
+                    <h1 className="text-center">Edit Author</h1>
                     
                 <form onSubmit={formHandler} >
                     <div className="container-fluid">
                     <div className="row">
-                        <span>Title of the Blog</span>
+                        <span>Name of the Author</span>
                       </div>
                       <div className="row">
-                        <textarea value={title} onChange={titlechange}  maxLength={1000} placeholder={editmovie.Title}></textarea></div>
+                        <textarea value={title} onChange={titlechange}  maxLength={1000} placeholder={editmovie.Name}></textarea></div>
                         <div className="row">
-                        <span>The description of the blog</span>
+                        <span>Email of the author</span>
                       </div>
                       <div className="row">
-                        <textarea value={description} onChange={(event)=>{changedescription(event.target.value)}} placeholder={editmovie.Description} maxLength={1000}></textarea></div>
+                        <textarea value={description} onChange={(event)=>{changedescription(event.target.value)}} placeholder={editmovie.Email} maxLength={1000}></textarea></div>
                     <div className="row">
-                        <span>Body of the blog</span>
+                        <span>Password of the Author</span>
                       </div>
                       <div className="row">
-                        <textarea value={summarydata} onChange={summarychange}rows="15" placeholder={editmovie.Summary}></textarea>
+                        <textarea value={summarydata} onChange={summarychange} placeholder={editmovie.Password}></textarea>
                         </div>
                         <div className="row">
-                        <textarea value={url} onChange={(event)=>seturl(event.target.value)} placeholder={editmovie.Image} maxLength={1000}></textarea>
+                        <span>Bio of the Author</span>
+                        <textarea value={url} onChange={(event)=>seturl(event.target.value)} placeholder={editmovie.Bio} maxLength={1000}></textarea>
                         </div>
                         <div className="row">    
                         <button type="submit" className="submitbutton">Submit</button></div>
                         <div class="row">
-                        <span>Upload Image: </span>
-                        <div>
+                        {/* <span>Upload Image: </span> */}
+                        {/* <div>
                          <input type="file" multiple accept="image/*" onChange={onImageChange}/>
                         {imageURLs.map(imageSrc=><img className="uploadimage" src={imageSrc} alt=""/>)}
-                    </div>
+                    </div> */}
                         </div>
                         </div>
                   </form>
@@ -135,4 +139,4 @@ function Edit(){
             </div>
         </div>)
 }
-export default Edit;
+export default EditAuthor;
