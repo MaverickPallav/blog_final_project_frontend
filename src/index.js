@@ -12,7 +12,9 @@ import UploadImages from './uploadimage';
 import Edit from './edit';
 import Myblogs from './My_blog';
 import More from './moredetails';
-
+import AdminLogin from './AdminLogin'
+import Creatordashboard from './Creatordashboard'
+import EditAuthor from './editauthor'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -36,6 +38,9 @@ root.render(
    <Route path="/blogs/myblogs" element={<Myblogs/>}></Route>
    <Route path="/blogs/myblogs/edit/:id" element={<Edit />}></Route>
    <Route path="/blogs/moredetails/:id" element={<More/>}></Route>
+   <Route path="/AdminLogin" element={<AdminLogin />}></Route>
+   <Route path="/Creatordashboard" element={<Creatordashboard />}></Route>
+   <Route path="/editauthor/:id" element={<EditAuthor />}></Route>
    </Routes>
    </BrowserRouter>
 );
