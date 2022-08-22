@@ -88,11 +88,11 @@ function Myblogs() {
                   <img src={movie.Image} alt=""className="card-img-top"/>
                   </div> */}
                 <div className="card-body text-center design">
-                  <h5 className="card-title">Name:{movie.Name}</h5>
-                  <h5 className="card-title">Email:{movie.Email}</h5>
-                  <h5 className="card-title">Password:{movie.Password}</h5>
+                  <h5 className="card-title">Name: {movie.Name}</h5>
+                  <h5 className="card-title">Email: {movie.Email}</h5>
+                  <h5 className="card-title">Password: {movie.Password}</h5>
                   <p className="card-text">
-                    Bio:{movie.Bio}
+                    Bio: {movie.Bio}
                   </p>
                   <Link to={{pathname:`/editauthor/${movie.id}`}}><div className="col-3 btn btn-primary btdesign"><span className="buttonsize">Edit<br></br>Details...</span></div></Link>
                   {/* <Link to={{pathname:`/blogs/moredetails/${movie.id}`}}><div className="col-3 btn btn-primary btdesign" ><span className="buttonsize">More Details...</span></div></Link> */}

@@ -20,7 +20,7 @@ function Login() {
       console.log("form submitted")
       setMail(""); setPassword("");
       if(mail === "Admin" && password === "Admin123"){
-        window.alert('logged in successfully')
+        window.alert('Welcome Admin')
         navigate("/Creatordashboard",{replace:true})
       }
       else{

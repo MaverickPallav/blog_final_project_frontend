@@ -46,6 +46,7 @@ function Register(){
         let response = await axios.post(API_url,data)
         if(response.status === 200){
             navigate("/blogs",{replace:true})
+            window.alert('User successfully registered')
             window.localStorage.setItem('user_id',response.data.id)
             window.localStorage.setItem('user_name',response.data.Name)
   
